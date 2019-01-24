@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+   <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Early Review System</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.toppernav p{
+text-align:center;
+padding:14px 16px;
+font-size:30px
+}
+
+.form-state{
+	width: 300px;
+    margin: 0 auto;
+    height:150px;
+    
+	}
+.topnav-right {
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: bold;
+  float: right;
+}
+.text-p{
+	font-weight:bold;
+	text-align:center;
+	}
+
+
+</style>
+<style>
+.dat{
+	  display: block;
+  color: #717171;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+ font-family: 'HelveticaNeueLTStd-MdCn';
+	}
+.outer { font:normal 14px/18px 'latomedium', arial, sans-serif;
+position:relative;
+padding:50px 0 30px 0;
+width:100%;
+background:#eee;
+margin:0 0 50px 0;
+}
+.innera {
+overflow:auto;
+width:100%;
+height:280px;
+background:#eee;
+}
+.outer table caption {
+position:absolute;
+width:99%;
+text-align:center;
+top:0;
+left:0;
+height:20px;
+background:#697210;
+border:1px solid #fff;
+color:#fff;
+}
+.outer thead tr {
+position:absolute;
+top:20px;
+height:20px;
+left:0;
+}
+.outer tfoot td {
+position:absolute;
+width:648px;
+text-align:center;
+background:#f0c992; 
+border:1px solid #000;
+color:#000;
+bottom:0;
+left:0
+}
+.outer th, .outer td {
+width:10em; 
+text-align:left;
+}
+.outer th {
+background:#724a10; 
+color:#fff;}
+.outer .dk {background:#fff;
+}
+
+.tableone {width:1050px; border-collapse:collapse; margin:0; font-family:'latomedium', arial, sans-serif;}
+.tabletwo {width:620px; border-collapse:collapse;}
+.th1 {width:149px;}
+.th2 {width:99px;}
+.th3 {width:99px;}
+.th4 {width:99px;}
+.th5 {width:200px;}
+
+.td1 {width:149px;}
+.td2 {width:99px;}
+.td3 {width:99px;}
+.td4 {width:99px;}
+.td5 {width:170px;}
+
+.tableone {background:#697210; border:1px solid #fff; color:#fff;}
+.tableone td {border:1px solid #fff; color:#fff; font-size:12px;}
+.tableone tbody {background:#f0c992; color:#000;}
+.tableone caption {background:#fff; color:#697210; font-size:13px; margin:0 auto;}
+.tabletwo td {background:#eee; color:#000;}
+.tableone th, .tabletwo th {text-align:left; font-size:13px;}
+.tabletwo tr.dk td {background:#ddd; color:#000;}
+
+.innerb {height:10em; overflow:auto;}
+</style>
+   </head>
+   <body>
+<div class="toppernav">
+<p class="title">Early Review Monitoring System</p>
+</div>
+<div class="topnav">
+  <a class="active" href="#">Home</a>
+  <a href="#">Data</a>
+  <a href="{{url_for('service', type='preprocess')}}">Pre Processing</a>
+  <a href="{{url_for('identify', type='Spam')}}">SpamDetection</a>
+  <a href="{{url_for('present',type='graph')}}">graph</a>
+  <div class="topnav-right">
+    <a href="{{url_for('home')}}">Logout</a>
+  </div>
+</div>
+<div class="outer">
+<div class="innera">
+<table summary="Dataset" border="1">
+	<caption>SpamData: Data to be deleted</caption>
+    <thead>
+        <tr>
+        {# get column name #}
+        {% for key in data[0] %}
+            <th>{{key}}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {# set value#}
+        {% for dict_item in data %}
+        {% for value in dict_item.values() %}
+            <td>{{value}}</td>
+        {# if show 3 columns, show next row #}
+        {% if loop.index0 % 14 == 13 %}
+        
+    </tr>
+    <tr>
+    {% endif %}
+    {% endfor %}
+    {%endfor%}
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div class="dat" align="center">
+            <p>Count : {{data|length}}</p>
+     
+</div>
+   </body>
+</html>
+

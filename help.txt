@@ -1,0 +1,40 @@
+Complete work has done on flask, Mysql and html 
+
+Install flask using
+--->Pip install flask
+
+Install Mysql
+
+
+make sure both user and password is root
+or else you have to change the program code 
+
+Enter into database
+mysql -u root -p
+
+
+Creating database
+create database bucketlist;
+
+exit from database 
+exit;
+
+Importing the database from mysql
+mysqldump -u root -p bucketlist < data-dump.sql
+
+conn = MySQLdb.connect(host="localhost",
+                           user = "root",
+                           passwd = "root",
+                           db = "bucketlist")
+
+in registration and login functions in proc.py 
+
+Any dataset  we can take But the dataset must have following fields
+['name','id','reviews.data', 'reviews.rating','reviews.username']
+
+Then the system is able to detect the early monitoring system
+
+The database used is mysql. With database name as bucketlist and table name reg having fields uname and pwd
+
+
+
